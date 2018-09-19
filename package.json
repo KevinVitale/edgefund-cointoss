@@ -1,0 +1,43 @@
+{
+  "name": "edgefund-cointoss",
+  "version": "1.0.0",
+  "description": "front-end for edgefund cointoss contract",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edgefund/edgefund-cointoss.git"
+  },
+  "keywords": [
+    "ethereum",
+    "smart",
+    "contracts",
+    "gambling",
+    "edgefund"
+  ],
+  "author": "Gareth Oates",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/edgefund/edgefund-cointoss/issues"
+  },
+  "homepage": "https://github.com/edgefund/edgefund-cointoss#readme",
+  "dependencies": {
+    "@edgefund/core": "0.0.4",
+    "drizzle": "^1.2.2"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.5.2",
+    "svelte": "^2.13.4",
+    "svelte-loader": "^2.11.0",
+    "webpack": "^4.19.1",
+    "eslint": "^5.6.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-json": "^1.2.1",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0"
+  }
+}
