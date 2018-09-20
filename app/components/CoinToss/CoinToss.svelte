@@ -48,7 +48,6 @@
 
     export default {
         oncreate() {
-            console.log('requesting data..');
             this.fire(events.GET_DATA);
         },
         data() {
@@ -56,7 +55,6 @@
                 coinToss: {},
                 transactions: {},
                 keys: {},
-                hashes: [],
                 isHeads: false,
                 amount: 1,
                 fundAmount: 50
@@ -71,6 +69,7 @@
             },
             fundContract() {
                 const fundAmount = this.get().fundAmount;
+
                 this.fire(events.FUND_CONTRACT, fundAmount.toString());
             }
         },

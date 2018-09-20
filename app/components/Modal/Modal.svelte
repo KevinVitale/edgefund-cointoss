@@ -8,7 +8,7 @@
         data() {
             return {
                 header: 'No Web3 Detected',
-                text: 'You need to install MetaMask extension in your browser'
+                text: 'Please install the MetaMask extension in your browser.'
             }
         }
     };
