@@ -24,27 +24,12 @@
     <p><input type="submit" value="Place Bet" on:click=placeBet()></p>
 </div>
 
-<div>
-    {#if transactionsArray.length > 0}
-    <p>Transactions:</p>
-    <table style="border: 1px solid black">
-        <th>Tx Hash</th>
-        <th>Status</th>
-        {#each transactionsArray as key}
-        <tr>
-            <td>{key}</td>
-            <td>{transactions[key].status}</td>
-        </tr>
-        {/each}
-    </table>
-    {:else}
-        <p>No Transactions</p>
-    {/if}
-</div>
+<EventViewer transactions={transactions} ></EventViewer>
 
 <script>
     import events from './coinTossEvents.js';
     import { getBankroll, getCounter } from './coinTossComputed';
+    import EventViewer from '../EventViewer/EventViewer.svelte';
 
     export default {
         oncreate() {
@@ -75,8 +60,10 @@
         },
         computed: {
             bankroll: ({ coinToss, keys, transactions }) => getBankroll(coinToss, keys),
-            choice: ({ isHeads }) => isHeads ? "Heads" : "Tails",
-            transactionsArray: ({ transactions }) => Object.keys(transactions)
+            choice: ({ isHeads }) => isHeads ? "Heads" : "Tails"
+        },
+        components: {
+            EventViewer
         }
     };
 </script>
