@@ -30,6 +30,14 @@ function init(app, drizzle, drizzleStore) {
 
         drizzle.contracts.CoinToss.methods.fund.cacheSend({ from: account, value });
     });
+
+    app.on(coinTossEvents.RESOLVE_BET, (betId) => {
+        console.log('betId: ', betId);
+
+        const account = drizzleStore.getState().accounts[0];
+
+        drizzle.contracts.CoinToss.methods.resolveBet.cacheSend(betId, { from: account });
+    });
 }
 
 export default {

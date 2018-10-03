@@ -24,7 +24,7 @@
     <p><input type="submit" value="Place Bet" on:click=placeBet()></p>
 </div>
 
-<EventViewer transactions={transactions} ></EventViewer>
+<EventViewer transactions={transactions} on:resolveBet ></EventViewer>
 
 <script>
     import events from './coinTossEvents.js';
@@ -42,7 +42,7 @@
                 keys: {},
                 isHeads: false,
                 amount: 1,
-                fundAmount: 50
+                fundAmount: 1
             };
         },
         methods: {
