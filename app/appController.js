@@ -32,8 +32,6 @@ function init(app, drizzle, drizzleStore) {
     });
 
     app.on(events.RESOLVE_BET, (betId) => {
-        console.log('betId: ', betId);
-
         const account = drizzleStore.getState().accounts[0];
 
         drizzle.contracts.CoinToss.methods.resolveBet.cacheSend(betId, { from: account });
