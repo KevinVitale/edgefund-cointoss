@@ -1,11 +1,11 @@
-import CoinToss from '@edgefund/core/build/contracts/CoinToss';
+import CoinToss from '../../edgefund-core/build/contracts/CoinToss';
 
 export default {
     contracts: [
         CoinToss
     ],
     events: {
-        CoinToss: ['betPlaced', 'bankRollFunded']
+        CoinToss: ['betPlaced', 'coinTossed']
     },
     polls: {
         accounts: 5000,
