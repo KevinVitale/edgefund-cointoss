@@ -27,7 +27,7 @@
 <EventViewer transactions={transactions} on:resolveBet ></EventViewer>
 
 <script>
-    import events from './coinTossEvents.js';
+    import events from './CoinTossEvents.js';
     import { getBankroll, getCounter } from './coinTossComputed';
     import EventViewer from '../EventViewer/EventViewer.svelte';
 

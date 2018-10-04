@@ -1,7 +1,7 @@
-import coinTossEvents from './components/CoinToss/coinTossEvents';
+import events from './components/CoinToss/CoinTossEvents';
 
 function init(app, drizzle, drizzleStore) {
-    app.on(coinTossEvents.GET_DATA, () => {
+    app.on(events.GET_DATA, () => {
         const keys = {};
         const bankrollKey = drizzle.contracts.CoinToss.methods.bankroll.cacheCall();
 
@@ -10,7 +10,7 @@ function init(app, drizzle, drizzleStore) {
         app.set({ keys });
     });
 
-    app.on(coinTossEvents.PLACE_BET, (bet) => {
+    app.on(events.PLACE_BET, (bet) => {
         const account = drizzleStore.getState().accounts[0];
         const value = drizzle.web3.utils.toWei(bet.amount.toString(), 'ether');
 
@@ -22,7 +22,7 @@ function init(app, drizzle, drizzleStore) {
         );
     });
 
-    app.on(coinTossEvents.FUND_CONTRACT, (amount) => {
+    app.on(events.FUND_CONTRACT, (amount) => {
         const account = drizzleStore.getState().accounts[0];
         const value = drizzle.web3.utils.toWei(amount, 'ether');
 
@@ -31,7 +31,7 @@ function init(app, drizzle, drizzleStore) {
         drizzle.contracts.CoinToss.methods.fund.cacheSend({ from: account, value });
     });
 
-    app.on(coinTossEvents.RESOLVE_BET, (betId) => {
+    app.on(events.RESOLVE_BET, (betId) => {
         console.log('betId: ', betId);
 
         const account = drizzleStore.getState().accounts[0];
