@@ -11,12 +11,14 @@ function init(app, drizzle, drizzleStore) {
     });
 
     app.on(coinTossEvents.PLACE_BET, async (bet) => {
-        const account = drizzleStore.getState().accounts[0];
         const value = drizzle.web3.utils.toWei(bet.amount.toString(), 'ether');
+
+        let account = drizzleStore.getState().accounts[0];
 
         if (!account) {
             try {
                 await ethereum.enable();
+                account = drizzleStore.getState().accounts[0];
             } catch (error) {
                 return;
             }
@@ -29,12 +31,14 @@ function init(app, drizzle, drizzleStore) {
     });
 
     app.on(coinTossEvents.FUND_CONTRACT, async (amount) => {
-        const account = drizzleStore.getState().accounts[0];
         const value = drizzle.web3.utils.toWei(amount, 'ether');
+
+        let account = drizzleStore.getState().accounts[0];
 
         if (!account) {
             try {
                 await ethereum.enable();
+                account = drizzleStore.getState().accounts[0];
             } catch (error) {
                 return;
             }
