@@ -1,12 +1,13 @@
 <h1>Welcome to the EdgeFund CoinToss</h1>
-{#if provider}
+{#if networkState.provider}
     {#await getNetwork}
         <p>Connecting...</p>
     {:then network}
         <Network network={network}></Network>
-        {#if loading}
+        {#if networkState.loading}
             <p>Loading...</p>
-        {:else}
+        {/if}
+        {#if networkState.network}
             <CoinToss
                 keys={keys}
                 on:getData
@@ -15,6 +16,8 @@
                 coinToss={state.contracts.CoinToss}
                 transactions={state.transactions}
             />
+        {:else}
+            <p>Sorry, the CoinToss Contract is not deployed to this network.</p>
         {/if}
     {:catch error}
         <p>Could not determine connected network.</p>
@@ -31,13 +34,13 @@
     export default {
         data() {
             return {
-                loading: true,
+                networkState: {},
                 keys: {},
                 state: {},
             };
         },
         computed: {
-            getNetwork: ({ provider }) => provider.eth.net.getNetworkType(),
+            getNetwork: ({ provider }) => provider && provider.eth.net.getNetworkType(),
         },
         components: {
             Modal,
