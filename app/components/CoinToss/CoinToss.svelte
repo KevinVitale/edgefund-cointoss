@@ -59,7 +59,6 @@
         },
         computed: {
             bankroll: ({ coinToss, keys, transactions }) => utils.fromWei(getProperty(coinToss, keys, "bankroll").toString()),
-            bets: ({ coinToss, keys, transactions }) => getProperty(coinToss, keys, "betStack"),
             choice: ({ isHeads }) => isHeads ? "Heads" : "Tails"
         },
         components: {

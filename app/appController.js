@@ -4,10 +4,8 @@ function init(app, drizzle, drizzleStore) {
     app.on(coinTossEvents.GET_DATA, () => {
         const keys = {};
         const bankrollKey = drizzle.contracts.CoinToss.methods.bankroll.cacheCall();
-        const betStackKey = drizzle.contracts.CoinToss.methods.betStack.cacheCall(0);
 
         keys.bankroll = bankrollKey;
-        keys.betStackKey = betStackKey;
 
         app.set({ keys });
     });
