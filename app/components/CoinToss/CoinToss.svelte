@@ -1,5 +1,3 @@
-<h1>CoinToss Component</h1>
-
 <div>
     <h2>Bankroll:</h2>
     <p>Current: {bankroll} ETH</p>
@@ -28,7 +26,8 @@
 
 <script>
     import events from './coinTossEvents.js';
-    import { getBankroll, getCounter } from './coinTossComputed';
+    import utils from 'web3-utils';
+    import { getProperty } from './coinTossComputed';
     import EventViewer from '../EventViewer/EventViewer.svelte';
 
     export default {
@@ -59,7 +58,8 @@
             }
         },
         computed: {
-            bankroll: ({ coinToss, keys, transactions }) => getBankroll(coinToss, keys),
+            bankroll: ({ coinToss, keys, transactions }) => utils.fromWei(getProperty(coinToss, keys, "bankroll").toString()),
+            bets: ({ coinToss, keys, transactions }) => getProperty(coinToss, keys, "betStack"),
             choice: ({ isHeads }) => isHeads ? "Heads" : "Tails"
         },
         components: {

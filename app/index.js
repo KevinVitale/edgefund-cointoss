@@ -1,4 +1,5 @@
 import { Drizzle, generateStore } from 'drizzle';
+import { getProvider } from './provider';
 import options from './drizzleOptions';
 import App from './App.svelte';
 import appController from './appController';
@@ -9,7 +10,7 @@ const drizzle = new Drizzle(options, drizzleStore);
 
 const app = new App({
     target: document.getElementById('main'),
-    data: { loading: true, provider: window.web3 }
+    data: { loading: true, provider: getProvider() }
 });
 
 drizzle.web3.utils = utils;

@@ -1,5 +1,3 @@
-<h1>Modal Component</h1>
-
 <h2>{header}</h2>
 <p>{text}</p>
 
@@ -8,7 +6,7 @@
         data() {
             return {
                 header: 'No Web3 Detected',
-                text: 'Please install the MetaMask extension in your browser.'
+                text: 'Please install the MetaMask extension or use a dapp enabled browser like Mist.'
             }
         }
     };

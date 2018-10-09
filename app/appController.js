@@ -4,17 +4,25 @@ function init(app, drizzle, drizzleStore) {
     app.on(coinTossEvents.GET_DATA, () => {
         const keys = {};
         const bankrollKey = drizzle.contracts.CoinToss.methods.bankroll.cacheCall();
+        const betStackKey = drizzle.contracts.CoinToss.methods.betStack.cacheCall(0);
 
         keys.bankroll = bankrollKey;
+        keys.betStackKey = betStackKey;
 
         app.set({ keys });
     });
 
-    app.on(coinTossEvents.PLACE_BET, (bet) => {
+    app.on(coinTossEvents.PLACE_BET, async (bet) => {
         const account = drizzleStore.getState().accounts[0];
         const value = drizzle.web3.utils.toWei(bet.amount.toString(), 'ether');
 
-        if (!account) { return; }
+        if (!account) {
+            try {
+                await ethereum.enable();
+            } catch (error) {
+                return;
+            }
+        }
 
         drizzle.contracts.CoinToss.methods.placeBet.cacheSend(
             bet.heads,
@@ -22,11 +30,17 @@ function init(app, drizzle, drizzleStore) {
         );
     });
 
-    app.on(coinTossEvents.FUND_CONTRACT, (amount) => {
+    app.on(coinTossEvents.FUND_CONTRACT, async (amount) => {
         const account = drizzleStore.getState().accounts[0];
         const value = drizzle.web3.utils.toWei(amount, 'ether');
 
-        if (!account) { return; }
+        if (!account) {
+            try {
+                await ethereum.enable();
+            } catch (error) {
+                return;
+            }
+        }
 
         drizzle.contracts.CoinToss.methods.fund.cacheSend({ from: account, value });
     });

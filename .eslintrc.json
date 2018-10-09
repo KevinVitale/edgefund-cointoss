@@ -15,6 +15,7 @@
     "globals": {
         "expect": true,
         "web3": true,
+        "ethereum": true,
         "assert": true,
         "contract": true,
         "artifacts": true
