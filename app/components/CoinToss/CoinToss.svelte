@@ -58,7 +58,8 @@
             }
         },
         computed: {
-            bankroll: ({ coinToss, keys, transactions }) => utils.fromWei(getProperty(coinToss, keys, "bankroll").toString()),
+            bankroll: ({ coinToss, keys, transactions }) =>
+                utils.fromWei(getProperty(coinToss, keys, "bankroll").toString()),
             choice: ({ isHeads }) => isHeads ? "Heads" : "Tails"
         },
         components: {
