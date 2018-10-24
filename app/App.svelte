@@ -10,9 +10,11 @@
         {#if networkState.network}
             <CoinToss
                 keys={keys}
+                wallet={wallet}
                 on:getData
                 on:placeBet
                 on:fundContract
+                on:resolveBet
                 coinToss={state.contracts.CoinToss}
                 transactions={state.transactions}
             />

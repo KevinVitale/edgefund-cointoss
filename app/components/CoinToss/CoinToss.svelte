@@ -1,6 +1,6 @@
 <div>
-    <h2>Bankroll:</h2>
-    <p>Current: {bankroll} ETH</p>
+    <h2>Current Bankroll: {bankroll} ETH</h2>
+    <h3>Your Wallet: {wallet} ETH</h3>
     <label for="amount">Fund Bankroll:</label>
     <input id="fundAmount" type="number" min=1 bind:value=fundAmount> ETH
     <input type="submit" value="Fund bankroll" on:click="fundContract()">
@@ -22,7 +22,7 @@
     <p><input type="submit" value="Place Bet" on:click=placeBet()></p>
 </div>
 
-<EventViewer transactions={transactions} ></EventViewer>
+<EventViewer transactions={transactions} on:resolveBet></EventViewer>
 
 <script>
     import events from './coinTossEvents.js';
@@ -41,7 +41,8 @@
                 keys: {},
                 isHeads: false,
                 amount: 1,
-                fundAmount: 50
+                fundAmount: 50,
+                wallet: 0
             };
         },
         methods: {
