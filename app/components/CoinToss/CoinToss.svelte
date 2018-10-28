@@ -42,7 +42,7 @@
                 isHeads: false,
                 amount: 1,
                 fundAmount: 50,
-                wallet: 0
+                accountBalances: {}
             };
         },
         methods: {
@@ -60,8 +60,11 @@
         },
         computed: {
             bankroll: ({ coinToss, keys, transactions }) =>
-                utils.fromWei(getProperty(coinToss, keys, "bankroll").toString()),
-            choice: ({ isHeads }) => isHeads ? "Heads" : "Tails"
+                utils.fromWei(getProperty(coinToss, keys, 'bankroll').toString()),
+            choice: ({ isHeads }) => isHeads ? 'Heads' : 'Tails',
+            wallet: ({ accounts, accountBalances }) => {
+                return Number(utils.fromWei(accountBalances[accounts[0]])).toFixed(2);
+            }
         },
         components: {
             EventViewer

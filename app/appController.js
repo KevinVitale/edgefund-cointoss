@@ -5,16 +5,12 @@ function init(app, drizzle, drizzleStore) {
     app.on(coinTossEvents.GET_DATA, () => {
         const keys = {};
         const bankrollKey = drizzle.contracts.CoinToss.methods.bankroll.cacheCall();
-        const account = drizzleStore.getState().accounts[0];
 
         if (!getAccount(drizzleStore)) { return; }
-
-        const balance = drizzle.web3.utils.fromWei(drizzleStore.getState().accountBalances[account]);
 
         keys.bankroll = bankrollKey;
 
         app.set({ keys });
-        app.set({ wallet: Number(balance).toFixed(2) });
     });
 
     app.on(coinTossEvents.PLACE_BET, async (bet) => {

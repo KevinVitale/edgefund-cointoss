@@ -40,6 +40,9 @@ if (provider) {
 
                     app.set({ networkState, state });
                 }
+
+                window.drizzle = drizzle;
+                window.drizzleStore = drizzleStore;
             });
         } else {
             networkState.loading = false;

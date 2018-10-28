@@ -16,6 +16,8 @@
                 on:fundContract
                 on:resolveBet
                 coinToss={state.contracts.CoinToss}
+                accounts={state.accounts}
+                accountBalances={state.accountBalances}
                 transactions={state.transactions}
             />
         {:else}

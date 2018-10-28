@@ -11,7 +11,7 @@
             {#if transactions[key].status == "success"}
                 {#if transactions[key].receipt.events.betPlaced}
                     <td>{transactions[key].receipt.events.betPlaced.returnValues.user}</td>
-                    <td>{transactions[key].receipt.events.betPlaced.returnValues.isHeads == 'true' ? 'Heads' : 'Tails'}</td>
+                    <td>{transactions[key].receipt.events.betPlaced.returnValues.isHeads === true ? 'Heads' : 'Tails'}</td>
                     <td>{transactions[key].receipt.events.betPlaced.returnValues.amount}</td>
                     <td>
                         <button
@@ -30,7 +30,6 @@
 
 <script>
     import eventViewerEvents from './eventViewerEvents';
-    import { advanceBlock } from 'openzeppelin-solidity/test/helpers/advanceToBlock';
 
     export default {
         data() {
@@ -43,16 +42,7 @@
         },
         methods: {
             ResolveBet(id) {
-                Promise.all([
-                    advanceBlock(),
-                    advanceBlock(),
-                    advanceBlock(),
-                    advanceBlock(),
-                    advanceBlock(),
-                    advanceBlock()
-                ]).then(() => {
-                    this.fire(eventViewerEvents.RESOLVE_BET, id);
-                });
+                this.fire(eventViewerEvents.RESOLVE_BET, id);
             }
         }
     }
