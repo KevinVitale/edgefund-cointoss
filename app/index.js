@@ -38,11 +38,10 @@ if (provider) {
                     networkState.loading = false;
                     networkState.network = true;
 
-                    app.set({ networkState, state });
+                    app.set({ networkState });
                 }
 
-                window.drizzle = drizzle;
-                window.drizzleStore = drizzleStore;
+                app.set({ state });
             });
         } else {
             networkState.loading = false;
@@ -50,5 +49,8 @@ if (provider) {
 
             app.set({ networkState });
         }
+
+        window.drizzle = drizzle;
+        window.drizzleStore = drizzleStore;
     });
 }
