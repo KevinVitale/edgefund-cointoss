@@ -43,14 +43,14 @@ if (provider) {
 
                 app.set({ state });
             });
+
+            window.drizzle = drizzle;
+            window.drizzleStore = drizzleStore;
         } else {
             networkState.loading = false;
             networkState.network = false;
 
             app.set({ networkState });
         }
-
-        window.drizzle = drizzle;
-        window.drizzleStore = drizzleStore;
     });
 }

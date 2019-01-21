@@ -4,7 +4,7 @@
     export default {
         data() {
             return {
-                network: 'unknow'
+                network: 'unknown'
             }
         }
     }

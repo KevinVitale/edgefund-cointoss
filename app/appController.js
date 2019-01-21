@@ -5,8 +5,9 @@ function init(app, drizzle, drizzleStore) {
     app.on(coinTossEvents.GET_DATA, () => {
         const keys = {};
         const bankrollKey = drizzle.contracts.CoinToss.methods.bankroll.cacheCall();
+        const account = drizzleStore.getState().accounts[0];
 
-        if (!getAccount(drizzleStore)) { return; }
+        if (!getAccount(account)) { return; }
 
         keys.bankroll = bankrollKey;
 

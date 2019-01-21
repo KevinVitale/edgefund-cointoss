@@ -1,6 +1,6 @@
 <div>
     <h2>Current Bankroll: {bankroll} ETH</h2>
-    <h3>Your Wallet: {wallet} ETH</h3>
+    <h3>Your Wallet: {wallet}</h3>
     <label for="amount">Fund Bankroll:</label>
     <input id="fundAmount" type="number" min=1 bind:value=fundAmount> ETH
     <input type="submit" value="Fund bankroll" on:click="fundContract()">
@@ -63,7 +63,11 @@
                 utils.fromWei(getProperty(coinToss, keys, 'bankroll').toString()),
             choice: ({ isHeads }) => isHeads ? 'Heads' : 'Tails',
             wallet: ({ accounts, accountBalances }) => {
-                return Number(utils.fromWei(accountBalances[accounts[0]])).toFixed(2);
+                if (accountBalances[accounts[0]]) {
+                    return Number(utils.fromWei(accountBalances[accounts[0]].toString())).toFixed(2) + ' ETH';
+                } else {
+                    return 'Locked';
+                }
             }
         },
         components: {
