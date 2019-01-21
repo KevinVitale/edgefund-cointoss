@@ -8,7 +8,7 @@ export default {
         CoinToss: ['betPlaced', 'coinTossed']
     },
     polls: {
-        accounts: 5000,
+        accounts: 1000,
         blocks: 1000
     }
 };
