@@ -57,14 +57,14 @@ function init(app, drizzle, drizzleStore) {
 }
 
 async function getAccount(account) {
-    if (!account) {
-        try {
-            await ethereum.enable();
+    if (account) { return true; }
 
-            return true;
-        } catch (error) {
-            console.log(error);
-        }
+    try {
+        await ethereum.enable();
+
+        return true;
+    } catch (error) {
+        console.log(error);
     }
 }
 
